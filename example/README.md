@@ -1,16 +1,81 @@
-# example
+# Awesome Page Transitions example
 
-Awesome page transitions example
+## Using
+```dart
+import 'package:awesome_page_transitions/awesome_page_transitions.dart';
+import 'package:flutter/material.dart';
 
-## Getting Started
+void main() {
+  runApp(MyApp());
+}
 
-This project is a starting point for a Flutter application.
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Awesome Page Transitions Demo',
+      home: MyHomePage(title: 'Awesome Page Transitions Demo'),
+    );
+  }
+}
 
-A few resources to get you started if this is your first Flutter project:
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+  final String title;
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Container(
+        alignment: Alignment.center,
+        color: Colors.yellow,
+        child: RaisedButton(
+          color: Colors.red,
+          child: Text("Open"),
+          onPressed: () => Navigator.push(
+            context,
+            AwesomePageRoute(
+              transitionDuration: Duration(milliseconds: 600),
+              exitPage: widget,
+              enterPage: SecondScreen(),
+              transition: CubeTransition(),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class SecondScreen extends StatefulWidget {
+  @override
+  _SecondScreenState createState() => _SecondScreenState();
+}
+
+class _SecondScreenState extends State<SecondScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Second Screen"),),
+      body: Container(
+        alignment: Alignment.center,
+        color: Colors.red,
+        child: RaisedButton(
+          color: Colors.yellow,
+          onPressed: () => Navigator.pop(context),
+          child: Text("Go Back"),
+        ),
+      ),
+    );
+  }
+}
+```

@@ -1,8 +1,8 @@
 name: awesome_page_transitions
 description: Awesome page transitions for flutter
-version: 0.0.1
-author:
-homepage:
+version: 1.0.0
+author: Udara Wanasinghe <udara.developer@gmail.com>
+homepage: https://github.com/UdaraWanasinghe/AwesomePageTransitions
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
